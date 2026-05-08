@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Syenr QA Test Suite — Internship Project</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',sans-serif;background:#0F172A;color:#E2E8F0;min-height:100vh}
+header{background:#062238;border-bottom:1px solid #1E3A5F;padding:14px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-box{width:36px;height:36px;background:#0D9E75;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700;color:#fff}
+.logo-text h1{font-size:16px;font-weight:600;color:#fff}
+.logo-text p{font-size:11px;color:#7EA8C4}
+.badge{font-size:11px;padding:4px 12px;border-radius:20px;background:#0D3D2B;color:#0D9E75;border:1px solid #0D9E75}
+.main{max-width:1100px;margin:0 auto;padding:28px 20px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:750px){.main{grid-template-columns:1fr}}
+/* Info cards */
+.info-col{display:flex;flex-direction:column;gap:16px}
+.card{background:#1E293B;border-radius:12px;padding:20px;border:1px solid #334155}
+.card h2{font-size:14px;font-weight:600;color:#94A3B8;text-transform:uppercase;letter-spacing:.05em;margin-bottom:14px}
+.about-title{font-size:19px;font-weight:700;color:#F1F5F9;margin-bottom:6px}
+.about-sub{font-size:13px;color:#64748B;line-height:1.7;margin-bottom:14px}
+.tag{display:inline-block;font-size:11px;padding:3px 10px;border-radius:5px;margin:2px;font-weight:500}
+.tg{background:#0D3D2B;color:#0D9E75;border:1px solid #166534}
+.tb{background:#1e3a5f;color:#60A5FA;border:1px solid #1e40af}
+.ta{background:#3D2A00;color:#F59E0B;border:1px solid #92400e}
+.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}
+.stat{background:#0F172A;border-radius:8px;padding:12px;border:1px solid #1E3A5F;text-align:center}
+.stat-num{font-size:22px;font-weight:700;color:#0D9E75}
+.stat-lbl{font-size:11px;color:#64748B;margin-top:3px}
+.tc-list{display:flex;flex-direction:column;gap:6px}
+.tc{display:flex;align-items:flex-start;gap:10px;padding:8px 10px;border-radius:7px;background:#0F172A;border:1px solid #1E3A5F}
+.tc-id{font-size:10px;font-weight:700;color:#0D9E75;width:44px;flex-shrink:0;padding-top:1px}
+.tc-desc{font-size:12px;color:#CBD5E1;line-height:1.5}
+.tc-class{font-size:10px;color:#475569;margin-top:2px}
+/* Terminal */
+.terminal-col{display:flex;flex-direction:column;gap:0}
+.term-wrap{background:#0A0F1A;border-radius:12px;border:1px solid #1E3A5F;overflow:hidden;display:flex;flex-direction:column;height:100%}
+.term-bar{background:#1E293B;padding:10px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #334155}
+.dot{width:12px;height:12px;border-radius:50%}
+.dr{background:#E24B4A}.dy{background:#EF9F27}.dg{background:#0D9E75}
+.term-title{font-size:12px;color:#64748B;margin-left:8px;font-family:monospace}
+.term-body{padding:16px;font-family:'Courier New',monospace;font-size:13px;line-height:1.7;flex:1;overflow-y:auto;min-height:420px}
+.run-btn{margin:0 16px 16px;padding:10px;background:#0D9E75;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:14px;font-weight:600;font-family:'Segoe UI',sans-serif;transition:background .2s}
+.run-btn:hover{background:#0a7d5c}
+.run-btn:disabled{background:#1E3A5F;color:#475569;cursor:not-allowed}
+/* terminal colors */
+.c-green{color:#0D9E75}.c-yellow{color:#EF9F27}.c-blue{color:#60A5FA}
+.c-red{color:#E24B4A}.c-gray{color:#64748B}.c-white{color:#F1F5F9}
+.c-teal{color:#14B8A6}.c-dim{color:#475569}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">
+    <div class="logo-box">S</div>
+    <div class="logo-text">
+      <h1>Syenr Technologies — QA Test Suite</h1>
+      <p>Internship Project · Quality Assurance Domain · Python Automation</p>
+    </div>
+  </div>
+  <span class="badge">Project 1 of 2</span>
+</header>
+
+<div class="main">
+  <!-- LEFT: Info -->
+  <div class="info-col">
+    <div class="card">
+      <div class="about-title">Automated QA Test Suite</div>
+      <div class="about-sub">
+        An automated testing tool built during my internship at Syenr Technologies. It runs 17 test cases against the live syenr.com website — checking every page, portal, and service automatically.
+      </div>
+      <span class="tag tg">Python 3</span>
+      <span class="tag tg">unittest</span>
+      <span class="tag tb">requests</span>
+      <span class="tag ta">QA / Testing</span>
+      <span class="tag ta">Automation</span>
+    </div>
+
+    <div class="card">
+      <h2>Test Results</h2>
+      <div class="stat-row">
+        <div class="stat"><div class="stat-num">17</div><div class="stat-lbl">Total Tests</div></div>
+        <div class="stat"><div class="stat-num" style="color:#0D9E75">17</div><div class="stat-lbl">Passed ✓</div></div>
+        <div class="stat"><div class="stat-num" style="color:#E24B4A">0</div><div class="stat-lbl">Failed ✗</div></div>
+        <div class="stat"><div class="stat-num" style="color:#EF9F27">5</div><div class="stat-lbl">Test Classes</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>All 17 Test Cases</h2>
+      <div class="tc-list">
+        <div class="tc"><span class="tc-id">TC-001</span><div><div class="tc-desc">Homepage returns HTTP 200 OK</div><div class="tc-class">TestSyenrHomePage</div></div></div>
+        <div class="tc"><span class="tc-id">TC-002</span><div><div class="tc-desc">Homepage contains brand name "Syenr"</div><div class="tc-class">TestSyenrHomePage</div></div></div>
+        <div class="tc"><span class="tc-id">TC-003</span><div><div class="tc-desc">Page loads within 5 seconds (performance)</div><div class="tc-class">TestSyenrHomePage</div></div></div>
+        <div class="tc"><span class="tc-id">TC-004</span><div><div class="tc-desc">Site uses HTTPS — secure connection verified</div><div class="tc-class">TestSyenrHomePage</div></div></div>
+        <div class="tc"><span class="tc-id">TC-005</span><div><div class="tc-desc">Contact email visible on homepage</div><div class="tc-class">TestSyenrHomePage</div></div></div>
+        <div class="tc"><span class="tc-id">TC-006</span><div><div class="tc-desc">About Us page accessible (HTTP 200)</div><div class="tc-class">TestSyenrNavigation</div></div></div>
+        <div class="tc"><span class="tc-id">TC-007</span><div><div class="tc-desc">Contact page accessible (HTTP 200)</div><div class="tc-class">TestSyenrNavigation</div></div></div>
+        <div class="tc"><span class="tc-id">TC-008</span><div><div class="tc-desc">Blog page accessible (HTTP 200)</div><div class="tc-class">TestSyenrNavigation</div></div></div>
+        <div class="tc"><span class="tc-id">TC-009</span><div><div class="tc-desc">Careers page accessible (HTTP 200)</div><div class="tc-class">TestSyenrNavigation</div></div></div>
+        <div class="tc"><span class="tc-id">TC-010</span><div><div class="tc-desc">Invalid URL handled correctly (404)</div><div class="tc-class">TestSyenrNavigation</div></div></div>
+        <div class="tc"><span class="tc-id">TC-011</span><div><div class="tc-desc">All 8 service pages return HTTP 200</div><div class="tc-class">TestSyenrServicesPages</div></div></div>
+        <div class="tc"><span class="tc-id">TC-012</span><div><div class="tc-desc">Consultant login portal accessible</div><div class="tc-class">TestSyenrLoginPages</div></div></div>
+        <div class="tc"><span class="tc-id">TC-013</span><div><div class="tc-desc">Organization login portal accessible</div><div class="tc-class">TestSyenrLoginPages</div></div></div>
+        <div class="tc"><span class="tc-id">TC-014</span><div><div class="tc-desc">Employee login portal accessible</div><div class="tc-class">TestSyenrLoginPages</div></div></div>
+        <div class="tc"><span class="tc-id">TC-015</span><div><div class="tc-desc">Business metrics (100+, 4.8★) on homepage</div><div class="tc-class">TestSyenrContentValidation</div></div></div>
+        <div class="tc"><span class="tc-id">TC-016</span><div><div class="tc-desc">All 3 core services listed on homepage</div><div class="tc-class">TestSyenrContentValidation</div></div></div>
+        <div class="tc"><span class="tc-id">TC-017</span><div><div class="tc-desc">Legal pages (Terms, Privacy Policy) load</div><div class="tc-class">TestSyenrContentValidation</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT: Terminal -->
+  <div class="terminal-col">
+    <div class="term-wrap">
+      <div class="term-bar">
+        <div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div>
+        <span class="term-title">python syenr_test_suite.py</span>
+      </div>
+      <div class="term-body" id="terminal">
+        <span class="c-gray">$ </span><span class="c-white">Click "Run Tests" to simulate the test execution</span><br><br>
+        <span class="c-dim">The terminal will show real-time output as each test case runs...</span><br>
+      </div>
+      <button class="run-btn" id="runBtn" onclick="runTests()">&#9654; Run Tests</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const term = document.getElementById('terminal');
+const btn = document.getElementById('runBtn');
+
+const lines = [
+  {t:200, cls:'c-green', text:'============================================================'},
+  {t:300, cls:'c-green', text:'  Syenr Technologies — Automated QA Test Suite'},
+  {t:400, cls:'c-green', text:'  Internship Project | Quality Assurance Domain'},
+  {t:500, cls:'c-green', text:'============================================================'},
+  {t:700, cls:'c-blue',  text:'  Starting test run at 11:32:47\n'},
+  {t:900, cls:'c-yellow',text:'--- TestSyenrHomePage ---'},
+  {t:1200,cls:'c-green', text:'  [PASS] TC-001 | Homepage status: 200'},
+  {t:1500,cls:'c-green', text:'  [PASS] TC-002 | Brand name found on homepage'},
+  {t:1900,cls:'c-green', text:'  [PASS] TC-003 | Response time: 1.23s'},
+  {t:2200,cls:'c-green', text:'  [PASS] TC-004 | HTTPS confirmed'},
+  {t:2500,cls:'c-green', text:'  [PASS] TC-005 | Contact info present\n'},
+  {t:2700,cls:'c-yellow',text:'--- TestSyenrNavigation ---'},
+  {t:2900,cls:'c-green', text:'  [PASS] TC-006 | About page status: 200'},
+  {t:3200,cls:'c-green', text:'  [PASS] TC-007 | Contact page status: 200'},
+  {t:3500,cls:'c-green', text:'  [PASS] TC-008 | Blog page status: 200'},
+  {t:3800,cls:'c-green', text:'  [PASS] TC-009 | Careers page status: 200'},
+  {t:4100,cls:'c-green', text:'  [PASS] TC-010 | Invalid URL handled: 404\n'},
+  {t:4300,cls:'c-yellow',text:'--- TestSyenrServicesPages ---'},
+  {t:4500,cls:'c-green', text:'  [PASS] TC-011 | Staff Augmentation: 200'},
+  {t:4700,cls:'c-green', text:'  [PASS] TC-011 | Project Marketplace: 200'},
+  {t:4900,cls:'c-green', text:'  [PASS] TC-011 | Technology Services: 200'},
+  {t:5100,cls:'c-green', text:'  [PASS] TC-011 | Web Development: 200'},
+  {t:5300,cls:'c-green', text:'  [PASS] TC-011 | Mobile App Development: 200'},
+  {t:5500,cls:'c-green', text:'  [PASS] TC-011 | Digital Marketing: 200'},
+  {t:5700,cls:'c-green', text:'  [PASS] TC-011 | Design & Creative: 200'},
+  {t:5900,cls:'c-green', text:'  [PASS] TC-011 | Dedicated Hiring: 200\n'},
+  {t:6100,cls:'c-yellow',text:'--- TestSyenrLoginPages ---'},
+  {t:6300,cls:'c-green', text:'  [PASS] TC-012 | Consultant login: 200'},
+  {t:6600,cls:'c-green', text:'  [PASS] TC-013 | Organization login: 200'},
+  {t:6900,cls:'c-green', text:'  [PASS] TC-014 | Employee login: 200\n'},
+  {t:7100,cls:'c-yellow',text:'--- TestSyenrContentValidation ---'},
+  {t:7300,cls:'c-green', text:'  [PASS] TC-015 | Key metrics found on homepage'},
+  {t:7600,cls:'c-green', text:'  [PASS] TC-016 | All 3 core services present'},
+  {t:7900,cls:'c-green', text:'  [PASS] TC-017 | Legal pages accessible\n'},
+  {t:8200,cls:'c-teal',  text:'============================================================'},
+  {t:8300,cls:'c-teal',  text:'  SYENR TECHNOLOGIES — QA TEST EXECUTION REPORT'},
+  {t:8400,cls:'c-teal',  text:'============================================================'},
+  {t:8500,cls:'c-white', text:'  Date       : 2025-06-15 11:32:47'},
+  {t:8600,cls:'c-white', text:'  Base URL   : https://www.syenr.com'},
+  {t:8700,cls:'c-white', text:'  Total Tests: 17'},
+  {t:8800,cls:'c-green', text:'  Passed     : 17  ✓'},
+  {t:8900,cls:'c-red',   text:'  Failed     : 0   ✗'},
+  {t:9000,cls:'c-white', text:'  Duration   : 4.23 seconds'},
+  {t:9200,cls:'c-green', text:'  Result     : ALL TESTS PASSED ✓'},
+  {t:9400,cls:'c-teal',  text:'============================================================'},
+];
+
+function runTests(){
+  btn.disabled = true;
+  btn.textContent = 'Running...';
+  term.innerHTML = '<span class="c-gray">$ </span><span class="c-white">python syenr_test_suite.py</span><br><br>';
+  lines.forEach(({t,cls,text})=>{
+    setTimeout(()=>{
+      term.innerHTML += `<span class="${cls}">${text}</span><br>`;
+      term.scrollTop = term.scrollHeight;
+      if(text.includes('ALL TESTS PASSED')){
+        btn.disabled = false;
+        btn.textContent = '↺ Run Again';
+      }
+    }, t);
+  });
+}
+</script>
+</body>
+</html>
