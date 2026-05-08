@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Syenr Technologies — Consultant Dashboard</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Calibri,sans-serif;background:#F4F6F8;color:#1E293B}
+header{background:#062238;color:#fff;padding:14px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-box{width:36px;height:36px;background:#0D9E75;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:700;color:#fff}
+.logo-text h1{font-size:17px;font-weight:600}
+.logo-text p{font-size:11px;color:#7EA8C4;margin-top:2px}
+.badge{font-size:11px;padding:4px 12px;border-radius:20px;background:#0D3D2B;color:#0D9E75;border:1px solid #0D9E75}
+main{max-width:1200px;margin:0 auto;padding:24px 20px}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+.metric{background:#fff;border-radius:10px;padding:18px;box-shadow:0 1px 3px rgba(0,0,0,.07);border-left:4px solid #0D9E75}
+.metric.b{border-color:#378ADD}.metric.a{border-color:#EF9F27}.metric.p{border-color:#7F77DD}
+.metric-label{font-size:12px;color:#64748B;margin-bottom:6px}
+.metric-val{font-size:26px;font-weight:700;color:#062238}
+.metric-sub{font-size:11px;color:#0D9E75;margin-top:4px}
+.metric.b .metric-sub{color:#378ADD}.metric.a .metric-sub{color:#EF9F27}.metric.p .metric-sub{color:#7F77DD}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.card{background:#fff;border-radius:10px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.07)}
+.card h3{font-size:12px;font-weight:600;color:#64748B;text-transform:uppercase;letter-spacing:.05em;margin-bottom:14px}
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:11px}
+.bar-label{font-size:13px;color:#64748B;width:88px;flex-shrink:0}
+.bar-track{flex:1;height:7px;background:#F1F5F9;border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px}
+.bar-num{font-size:12px;font-weight:600;color:#1E293B;width:28px;text-align:right}
+.search-row{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.search-box{flex:1;min-width:200px;padding:8px 13px;border-radius:8px;border:1px solid #CBD5E1;font-size:13px;background:#F8FAFC;outline:none;font-family:inherit}
+.search-box:focus{border-color:#0D9E75}
+.btn{font-size:12px;padding:8px 14px;border-radius:8px;border:1px solid #CBD5E1;background:#fff;cursor:pointer;color:#1E293B;font-family:inherit}
+.btn:hover{background:#F1F5F9}
+table{width:100%;border-collapse:collapse}
+th{font-size:11px;color:#64748B;font-weight:600;text-align:left;padding:0 0 10px;border-bottom:1px solid #E2E8F0;text-transform:uppercase;letter-spacing:.03em}
+td{font-size:13px;padding:11px 0;border-bottom:1px solid #F1F5F9;vertical-align:middle}
+.name-cell{display:flex;align-items:center;gap:10px}
+.avatar{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+.av-g{background:#E1F5EE;color:#0D9E75}.av-b{background:#E6F1FB;color:#378ADD}
+.av-p{background:#EEEDFE;color:#534AB7}.av-a{background:#FAEEDA;color:#854F0B}
+.name-n{font-weight:500}.name-e{font-size:11px;color:#94A3B8}
+.pill{font-size:10px;padding:3px 9px;border-radius:20px;font-weight:600}
+.p-active{background:#E1F5EE;color:#0D9E75}.p-placed{background:#E6F1FB;color:#378ADD}
+.p-bench{background:#FAEEDA;color:#854F0B}.p-review{background:#EEEDFE;color:#534AB7}
+.skill-tag{display:inline-block;font-size:10px;padding:2px 7px;border-radius:4px;background:#F1F5F9;color:#64748B;border:1px solid #E2E8F0;margin:1px}
+.activity{display:flex;flex-direction:column;gap:12px}
+.act-row{display:flex;gap:10px;align-items:flex-start}
+.act-icon{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px}
+.act-g{background:#E1F5EE}.act-b{background:#E6F1FB}.act-a{background:#FAEEDA}
+.act-text{font-size:13px;color:#64748B;line-height:1.5}
+.act-text strong{color:#1E293B}
+.act-time{font-size:11px;color:#94A3B8;margin-top:2px}
+.donut-wrap{display:flex;align-items:center;gap:20px}
+.legend{display:flex;flex-direction:column;gap:10px}
+.leg{display:flex;align-items:center;gap:9px;font-size:13px;color:#64748B}
+.leg-dot{width:11px;height:11px;border-radius:50%;flex-shrink:0}
+.leg-val{font-weight:600;color:#1E293B;margin-left:4px}
+@media(max-width:700px){.metrics{grid-template-columns:1fr 1fr}.grid2{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">
+    <div class="logo-box">S</div>
+    <div class="logo-text">
+      <h1>Syenr Technologies Pvt. Ltd.</h1>
+      <p>Consultant Management Dashboard</p>
+    </div>
+  </div>
+  <span class="badge">&#9679; Live Dashboard</span>
+</header>
+<main>
+  <div class="metrics">
+    <div class="metric"><div class="metric-label">Total Consultants</div><div class="metric-val">124</div><div class="metric-sub">+8 this month</div></div>
+    <div class="metric b"><div class="metric-label">Active Placements</div><div class="metric-val">87</div><div class="metric-sub">70.2% placement rate</div></div>
+    <div class="metric a"><div class="metric-label">Partner Companies</div><div class="metric-val">15+</div><div class="metric-sub">+2 onboarded recently</div></div>
+    <div class="metric p"><div class="metric-label">Avg Project Rating</div><div class="metric-val">4.8/5</div><div class="metric-sub">Based on client feedback</div></div>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h3>Consultant Status</h3>
+      <div class="bar-row"><span class="bar-label">Active</span><div class="bar-track"><div class="bar-fill" style="width:70%;background:#0D9E75"></div></div><span class="bar-num">87</span></div>
+      <div class="bar-row"><span class="bar-label">On Bench</span><div class="bar-track"><div class="bar-fill" style="width:15%;background:#EF9F27"></div></div><span class="bar-num">19</span></div>
+      <div class="bar-row"><span class="bar-label">In Review</span><div class="bar-track"><div class="bar-fill" style="width:9%;background:#7F77DD"></div></div><span class="bar-num">11</span></div>
+      <div class="bar-row"><span class="bar-label">Exited</span><div class="bar-track"><div class="bar-fill" style="width:6%;background:#E24B4A"></div></div><span class="bar-num">7</span></div>
+    </div>
+    <div class="card">
+      <h3>Top Skills in Demand</h3>
+      <div class="bar-row"><span class="bar-label">React / JS</span><div class="bar-track"><div class="bar-fill" style="width:85%;background:#378ADD"></div></div><span class="bar-num">42</span></div>
+      <div class="bar-row"><span class="bar-label">Python</span><div class="bar-track"><div class="bar-fill" style="width:70%;background:#378ADD"></div></div><span class="bar-num">35</span></div>
+      <div class="bar-row"><span class="bar-label">QA / Testing</span><div class="bar-track"><div class="bar-fill" style="width:55%;background:#0D9E75"></div></div><span class="bar-num">27</span></div>
+      <div class="bar-row"><span class="bar-label">DevOps</span><div class="bar-track"><div class="bar-fill" style="width:40%;background:#378ADD"></div></div><span class="bar-num">20</span></div>
+      <div class="bar-row"><span class="bar-label">UI / UX</span><div class="bar-track"><div class="bar-fill" style="width:28%;background:#7F77DD"></div></div><span class="bar-num">14</span></div>
+    </div>
+  </div>
+  <div class="card" style="margin-bottom:18px">
+    <h3>Consultant Directory</h3>
+    <div class="search-row">
+      <input class="search-box" id="srch" type="text" placeholder="Search by name, skill, or company..." oninput="filterTable(this.value)">
+      <button class="btn" onclick="filterTable('Active')">Active</button>
+      <button class="btn" onclick="filterTable('Bench')">On Bench</button>
+      <button class="btn" onclick="filterTable('');document.getElementById('srch').value=''">Clear</button>
+    </div>
+    <table>
+      <thead><tr><th>Consultant</th><th>Skills</th><th>Experience</th><th>Company</th><th>Status</th></tr></thead>
+      <tbody id="ctbody">
+        <tr><td><div class="name-cell"><div class="avatar av-g">AR</div><div><div class="name-n">Ankit Rawat</div><div class="name-e">ankit@mail.com</div></div></div></td><td><span class="skill-tag">React</span><span class="skill-tag">Node.js</span></td><td>4 yrs</td><td>TechNova Pvt Ltd</td><td><span class="pill p-active">Active</span></td></tr>
+        <tr><td><div class="name-cell"><div class="avatar av-b">PS</div><div><div class="name-n">Priya Sharma</div><div class="name-e">priya@mail.com</div></div></div></td><td><span class="skill-tag">Python</span><span class="skill-tag">QA Testing</span></td><td>3 yrs</td><td>Infosys BPM</td><td><span class="pill p-placed">Placed</span></td></tr>
+        <tr><td><div class="name-cell"><div class="avatar av-p">RK</div><div><div class="name-n">Rahul Kumar</div><div class="name-e">rahul@mail.com</div></div></div></td><td><span class="skill-tag">DevOps</span><span class="skill-tag">AWS</span></td><td>6 yrs</td><td>GlobalEdge GmbH</td><td><span class="pill p-active">Active</span></td></tr>
+        <tr><td><div class="name-cell"><div class="avatar av-a">SM</div><div><div class="name-n">Sneha Mehta</div><div class="name-e">sneha@mail.com</div></div></div></td><td><span class="skill-tag">UI/UX</span><span class="skill-tag">Figma</span></td><td>2 yrs</td><td>&#8212;</td><td><span class="pill p-bench">On Bench</span></td></tr>
+        <tr><td><div class="name-cell"><div class="avatar av-g">VT</div><div><div class="name-n">Vivek Tiwari</div><div class="name-e">vivek@mail.com</div></div></div></td><td><span class="skill-tag">Java</span><span class="skill-tag">Spring Boot</span></td><td>5 yrs</td><td>&#8212;</td><td><span class="pill p-review">In Review</span></td></tr>
+        <tr><td><div class="name-cell"><div class="avatar av-b">KP</div><div><div class="name-n">Kavya Pandey</div><div class="name-e">kavya@mail.com</div></div></div></td><td><span class="skill-tag">React</span><span class="skill-tag">TypeScript</span></td><td>3 yrs</td><td>StartupXYZ</td><td><span class="pill p-active">Active</span></td></tr>
+        <tr><td><div class="name-cell"><div class="avatar av-p">MS</div><div><div class="name-n">Mohit Srivastava</div><div class="name-e">mohit@mail.com</div></div></div></td><td><span class="skill-tag">Python</span><span class="skill-tag">Django</span></td><td>4 yrs</td><td>FinTech Co.</td><td><span class="pill p-placed">Placed</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h3>Recent Activity</h3>
+      <div class="activity">
+        <div class="act-row"><div class="act-icon act-g">&#10003;</div><div><div class="act-text"><strong>Ankit Rawat</strong> placed at TechNova Pvt Ltd</div><div class="act-time">2 hours ago</div></div></div>
+        <div class="act-row"><div class="act-icon act-b">+</div><div><div class="act-text"><strong>3 new consultants</strong> registered on platform</div><div class="act-time">Yesterday</div></div></div>
+        <div class="act-row"><div class="act-icon act-a">!</div><div><div class="act-text"><strong>Sneha Mehta</strong> moved to bench</div><div class="act-time">2 days ago</div></div></div>
+        <div class="act-row"><div class="act-icon act-b">&#9962;</div><div><div class="act-text"><strong>GlobalEdge GmbH</strong> onboarded as partner</div><div class="act-time">3 days ago</div></div></div>
+        <div class="act-row"><div class="act-icon act-g">&#9733;</div><div><div class="act-text"><strong>Rating updated</strong> to 4.8/5 after delivery</div><div class="act-time">1 week ago</div></div></div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Placement Rate by Domain</h3>
+      <div class="donut-wrap">
+        <svg width="150" height="150" viewBox="0 0 150 150">
+          <circle cx="75" cy="75" r="55" fill="none" stroke="#F1F5F9" stroke-width="26"/>
+          <circle cx="75" cy="75" r="55" fill="none" stroke="#0D9E75" stroke-width="26" stroke-dasharray="242 103" stroke-dashoffset="0" transform="rotate(-90 75 75)"/>
+          <circle cx="75" cy="75" r="55" fill="none" stroke="#378ADD" stroke-width="26" stroke-dasharray="73 272" stroke-dashoffset="-242" transform="rotate(-90 75 75)"/>
+          <circle cx="75" cy="75" r="55" fill="none" stroke="#7F77DD" stroke-width="26" stroke-dasharray="32 313" stroke-dashoffset="-315" transform="rotate(-90 75 75)"/>
+          <circle cx="75" cy="75" r="18" fill="white"/>
+          <text x="75" y="71" text-anchor="middle" font-size="12" font-weight="700" fill="#062238">70%</text>
+          <text x="75" y="83" text-anchor="middle" font-size="8" fill="#64748B">Web Dev</text>
+        </svg>
+        <div class="legend">
+          <div class="leg"><div class="leg-dot" style="background:#0D9E75"></div>Web Dev <span class="leg-val">70%</span></div>
+          <div class="leg"><div class="leg-dot" style="background:#378ADD"></div>Mobile <span class="leg-val">21%</span></div>
+          <div class="leg"><div class="leg-dot" style="background:#7F77DD"></div>QA/Test <span class="leg-val">9%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<script>
+function filterTable(val){
+  document.getElementById('srch').value=val;
+  document.querySelectorAll('#ctbody tr').forEach(r=>{
+    r.style.display=r.textContent.toLowerCase().includes(val.toLowerCase())?'':'none';
+  });
+}
+</script>
+</body>
+</html>
